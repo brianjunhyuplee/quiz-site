@@ -9,7 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="jumbotron">
+    <section>
+        <p style="text-align:right" id = "timer">Time Left:</p>
+    </section>
+    <main class="jumbotron">
         <h1 class="text-center">
             <strong>Coding Quiz</strong>
         </h1>
@@ -19,13 +22,16 @@
             <button class="btn btn-dark btn-lg begin-button">
                 <span class="fa fa-ok"></span>Begin Quiz</button>
             </div>
-    </div>
+        </main>
 
     <script>
         $(document).ready(function() {
             var quizPrompt = $(".context");
             var beginButton = $(".begin-button");
             var questionArr = ["What does HTML stand for?","What does CSS stand for?"]
+            var falseOption = [["Hamburgers Tamales Milk Lactose", "Hot Turtle Merry Leash", "Hubert's Tropical Monday Lemonade"],["Cat Super Stand", "Cow Sugar Scam", "Clam Spicy Stew"]]
+            var correctOption = ["Hypertext Markup Language","Cascading Style Sheet"]
+            var arrIndex = 0;
             // remove elements from page to begin quiz
             beginButton.on("click", function (){
                 beginButton.remove();
@@ -33,7 +39,9 @@
             });
 
             function promptQuestion(){
-
+                //prompts the next question in array
+                quizPrompt.html(questionArr[arrIndex]);
+                arrIndex++;
             }
         });
         
