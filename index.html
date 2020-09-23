@@ -6,8 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="jumbotron">
@@ -22,6 +21,23 @@
             </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            var quizPrompt = $(".context");
+            var beginButton = $(".begin-button");
+            var questionArr = ["What does HTML stand for?","What does CSS stand for?"]
+            // remove elements from page to begin quiz
+            beginButton.on("click", function (){
+                beginButton.remove();
+                promptQuestion();
+            });
+
+            function promptQuestion(){
+
+            }
+        });
+        
+    </script>
 
 </body>
 </html>
