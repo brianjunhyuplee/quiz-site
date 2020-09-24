@@ -17,7 +17,7 @@
             <strong>Coding Quiz</strong>
         </h1>
         <br>
-        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Click begin quiz to begin quiz.</h4>
+        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Every second left over is worth 10 points. When the timer hits 0, the quiz is over. Click begin quiz to begin quiz.</h4>
         <section class = "text-center">
             <button class="btn btn-dark btn-lg" id = "begin-button">
                 Begin Quiz</button>
@@ -48,10 +48,16 @@
             var quizPrompt = $("#context");
             var beginButton = $("#begin-button");
             var button1 = $("#button1");
+            button1.hide();
             var button2 = $("#button2");
+            button2.hide();
             var button3 = $("#button3");
+            button3.hide();
             var button4 = $("#button4");
+            button4.hide();
             var rightIndex;
+            var userName = [];
+            var userScore = [];
             var points = 0;
             var buttonSpace = $("#button-space");
             var questionArr = ["What does HTML stand for?","What does CSS stand for?","What is Brian's favorite color?","Was this quiz good?"]
@@ -60,7 +66,11 @@
             var arrIndex = 0;
             // remove elements from page to begin quiz
             beginButton.on("click", function (){
-                beginButton.remove();
+                beginButton.hide();
+                button1.show();
+                button2.show();
+                button3.show();
+                button4.show();
                 promptQuestion();
             });
 
@@ -121,7 +131,7 @@
                     alert("Incorrect!");
                 }
                 arrIndex++;
-                if (arrIndex<questionArr.length()){
+                if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
@@ -137,7 +147,7 @@
                     alert("Incorrect!");
                 }
                 arrIndex++;
-                if (arrIndex<questionArr.length()){
+                if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
@@ -153,7 +163,7 @@
                     alert("Incorrect!");
                 }
                 arrIndex++;
-                if (arrIndex<questionArr.length()){
+                if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
@@ -170,7 +180,7 @@
                     points = points+100;
                 }
                 arrIndex++;
-                if (arrIndex<questionArr.length()){
+                if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
@@ -179,7 +189,22 @@
             });
 
             function promptUser(){
-                
+                userName.push(prompt("Enter Your Name"));
+                userScore.push(points);
+                button1.hide();
+                button2.hide();
+                button3.hide();
+                button4.hide();
+                quizPrompt.text("You scored: "+points+"points");
+                quizPrompt.append("<br />"+ "HIGH SCORES");
+                for (var i = 0; i < userName.length; i++){
+                    quizPrompt.append("<br />"+ userName[i]);
+                    quizPrompt.append(": "+ userScore[i]);
+                }
+                arrIndex = 0;
+                points = 0;
+                beginButton.html("Try Again?");
+                beginButton.show();
             }
         });
         
