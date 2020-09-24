@@ -10,8 +10,7 @@
 </head>
 <body>
     <section>
-        <p style="text-align: right">Time Left</p>
-        <h3 style="text-align:right" id = "timer"></h3>
+        <h4 style="text-align:right" id = "timer"></h4>
     </section>
     <main class="jumbotron">
         <h1 class="text-center">
@@ -47,6 +46,7 @@
     <script>
         $(document).ready(function() {
             var timerEl = $("#timer");
+            timerEl.hide();
             var timeLeft;
             var timeInterval;
             var quizPrompt = $("#context");
@@ -71,9 +71,9 @@
 
             function startTimer() {
             timeLeft = 60;
-
+            timerEl.show();
             timeInterval = setInterval(function() {
-            timerEl.html(timeLeft);
+            timerEl.html("Time Left: "+timeLeft);
             timeLeft--;
             if (timeLeft < 0) {
             timerEl.textContent = "0";
@@ -218,7 +218,7 @@
             function promptUser(){
                 userName.push(prompt("Enter Your Name"));
                 var timePoints = timeLeft * 10;
-                if (timePoints>0)
+                if (timePoints>0){
                 points = points + timePoints;
                 }
                 userScore.push(points);
@@ -226,7 +226,9 @@
                 button2.hide();
                 button3.hide();
                 button4.hide();
+                timerEl.hide();
                 quizPrompt.text("You scored: "+points+"points");
+                quizPrompt.append("<br />");
                 quizPrompt.append("<br />"+ "HIGH SCORES");
                 for (var i = 0; i < userName.length; i++){
                     quizPrompt.append("<br />"+ userName[i]);
