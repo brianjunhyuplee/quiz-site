@@ -51,11 +51,12 @@
             var button2 = $("#button2");
             var button3 = $("#button3");
             var button4 = $("#button4");
-            var rightButton = $("#button1");
+            var rightIndex;
+            var points = 0;
             var buttonSpace = $("#button-space");
-            var questionArr = ["What does HTML stand for?","What does CSS stand for?"]
-            var falseOption = [["Hamburgers Tamales Milk Lactose", "Hot Turtle Merry Leash", "Hubert's Tropical Monday Lemonade"],["Cat Super Stand", "Cow Sugar Scam", "Clam Spicy Stew"]]
-            var correctOption = ["Hypertext Markup Language","Cascading Style Sheet"]
+            var questionArr = ["What does HTML stand for?","What does CSS stand for?","What is Brian's favorite color?","Was this quiz good?"]
+            var falseOption = [["Hamburgers Tamales Milk Lactose", "Hot Turtle Merry Leash", "Hubert's Tropical Monday Lemonade"],["Cat Super Stand", "Cow Sugar Scam", "Clam Spicy Stew"],["Blue","Black","Green"],["No","NO","no"]]
+            var correctOption = ["Hypertext Markup Language","Cascading Style Sheet","Red","Yes"]
             var arrIndex = 0;
             // remove elements from page to begin quiz
             beginButton.on("click", function (){
@@ -81,20 +82,17 @@
                         alert("added right");
                         if (i==0){
                         button1.html(correctOption[arrIndex]);
-                        rightButton = $("#button1");
                         }
                         if (i==1){
                         button2.html(correctOption[arrIndex]);
-                        rightButton = $("#button2");
                         }
                         if (i==2){
                         button3.html(correctOption[arrIndex]);
-                        rightButton = $("#button3");
                         }
                         if (i==3){
                         button4.html(correctOption[arrIndex]);
-                        rightButton = $("#button4");
                         }
+                        rightIndex = i;
                     }
                     else{
                         alert("added wrong");
@@ -115,7 +113,74 @@
                     }
                 }
 
-            
+            button1.on("click", function (){
+                if (rightIndex==0){
+                    alert("Correct!");
+                }
+                else{
+                    alert("Incorrect!");
+                }
+                arrIndex++;
+                if (arrIndex<questionArr.length()){
+                    promptQuestion();
+                }
+                else{
+                    promptUser();
+                }
+            });
+            button2.on("click", function (){
+                if (rightIndex==1){
+                    alert("Correct!");
+                    points = points+100;
+                }
+                else{
+                    alert("Incorrect!");
+                }
+                arrIndex++;
+                if (arrIndex<questionArr.length()){
+                    promptQuestion();
+                }
+                else{
+                    promptUser();
+                    }
+            });
+            button3.on("click", function (){
+                if (rightIndex==2){
+                    alert("Correct!");
+                    points = points+100;
+                }
+                else{
+                    alert("Incorrect!");
+                }
+                arrIndex++;
+                if (arrIndex<questionArr.length()){
+                    promptQuestion();
+                }
+                else{
+                    promptUser();
+                    }
+            });
+            button4.on("click", function (){
+                if (rightIndex==3){
+                    alert("Correct!");
+                    points = points+100;
+                }
+                else{
+                    alert("Incorrect!");
+                    points = points+100;
+                }
+                arrIndex++;
+                if (arrIndex<questionArr.length()){
+                    promptQuestion();
+                }
+                else{
+                    promptUser();
+                    }
+            });
+
+            function promptUser(){
+                
+            }
         });
         
     </script>
