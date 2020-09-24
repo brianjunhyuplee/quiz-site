@@ -17,17 +17,42 @@
             <strong>Coding Quiz</strong>
         </h1>
         <br>
-        <h4 class="text-center" class = "context">Click on the correct answer to each question. You will have 2 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Click begin quiz to begin quiz.</h4>
-        <div class = "text-center">
-            <button class="btn btn-dark btn-lg begin-button">
-                <span class="fa fa-ok"></span>Begin Quiz</button>
-            </div>
+        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Click begin quiz to begin quiz.</h4>
+        <section class = "text-center">
+            <button class="btn btn-dark btn-lg" id = "begin-button">
+                Begin Quiz</button>
+            </section>
+        <section id = "button-space">
+            <button class="btn btn-dark btn-lg" id = "button1">
+                </button>
+            </section>
+            <br>
+            <button class="btn btn-dark btn-lg" id = "button2">
+                </button>
+            </section>
+            <br>
+            <br>
+            <button class="btn btn-dark btn-lg" id = "button3" >
+                </button>
+            </section>
+            <br>
+            <br>
+            <button class="btn btn-dark btn-lg" id = "button4">
+                </button>
+            </section>
+        </section>
         </main>
 
     <script>
         $(document).ready(function() {
-            var quizPrompt = $(".context");
-            var beginButton = $(".begin-button");
+            var quizPrompt = $("#context");
+            var beginButton = $("#begin-button");
+            var button1 = $("#button1");
+            var button2 = $("#button2");
+            var button3 = $("#button3");
+            var button4 = $("#button4");
+            var rightButton = $("#button1");
+            var buttonSpace = $("#button-space");
             var questionArr = ["What does HTML stand for?","What does CSS stand for?"]
             var falseOption = [["Hamburgers Tamales Milk Lactose", "Hot Turtle Merry Leash", "Hubert's Tropical Monday Lemonade"],["Cat Super Stand", "Cow Sugar Scam", "Clam Spicy Stew"]]
             var correctOption = ["Hypertext Markup Language","Cascading Style Sheet"]
@@ -40,9 +65,57 @@
 
             function promptQuestion(){
                 //prompts the next question in array
-                quizPrompt.html(questionArr[arrIndex]);
-                arrIndex++;
+                // alert(quizPrompt.context);
+                quizPrompt.text(questionArr[arrIndex]);
+                // alert(quizPrompt);
+                 addAnswers();
             }
+
+            function addAnswers(){
+                alert("adding answers");
+                var addedWrong = 0;
+                var randomIndex = Math.floor(Math.random()*4);
+                
+                for (var i = 0; i<4 ; i++){
+                    if (i==randomIndex){
+                        alert("added right");
+                        if (i==0){
+                        button1.html(correctOption[arrIndex]);
+                        rightButton = $("#button1");
+                        }
+                        if (i==1){
+                        button2.html(correctOption[arrIndex]);
+                        rightButton = $("#button2");
+                        }
+                        if (i==2){
+                        button3.html(correctOption[arrIndex]);
+                        rightButton = $("#button3");
+                        }
+                        if (i==3){
+                        button4.html(correctOption[arrIndex]);
+                        rightButton = $("#button4");
+                        }
+                    }
+                    else{
+                        alert("added wrong");
+                        if (i==0){
+                        button1.html(falseOption[arrIndex][addedWrong]);
+                        }
+                        if (i==1){
+                        button2.html(falseOption[arrIndex][addedWrong]);
+                        }
+                        if (i==2){
+                        button3.html(falseOption[arrIndex][addedWrong]);
+                        }
+                        if (i==3){
+                        button4.html(falseOption[arrIndex][addedWrong]);
+                        }
+                        addedWrong++;
+                    }   
+                    }
+                }
+
+            
         });
         
     </script>
