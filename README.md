@@ -18,7 +18,7 @@ Create a website that quizzes user with a timer function using Javascript and JQ
 
 ## Operation:
 
-**To access the website, simply click on this [deploymentlink](https://brianjunhyuplee.github.io/password_generator/).**
+**To access the website, simply click on this [deploymentlink](https://brianjunhyuplee.github.io/quiz-site/).**
 
 1. Read the instructions.
 2. Click Begin to begin.
@@ -75,6 +75,8 @@ $(#button).text(answer[index]);
 ```
 *Every time a question is answered correctly, points will be added.*
 
+![Image of questions and answers](assets/images/qa.png)
+
 3. End of Quiz
 
 Once the user has answered all the questions or run out of time, the system will prompt the user for a name.
@@ -98,7 +100,7 @@ A button labeled Try Again will run the same operations as the Begin button.
 * [jQuery](https://developer.mozilla.org/en-US/docs/Glossary/jQuery)
 
 ## Deployed Link:
-* [quiz-site](https://brianjunhyuplee.github.io/password_generator/)
+* [quiz-site](https://brianjunhyuplee.github.io/quiz-site/)
 
 ## Author(s):
 **Brian Lee**
