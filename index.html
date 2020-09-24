@@ -10,14 +10,15 @@
 </head>
 <body>
     <section>
-        <p style="text-align:right" id = "timer">Time Left:</p>
+        <p style="text-align: right">Time Left</p>
+        <h3 style="text-align:right" id = "timer"></h3>
     </section>
     <main class="jumbotron">
         <h1 class="text-center">
             <strong>Coding Quiz</strong>
         </h1>
         <br>
-        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Every second left over is worth 10 points. When the timer hits 0, the quiz is over. Click begin quiz to begin quiz.</h4>
+        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 5 seconds. Every second left over is worth 10 points. When the timer hits 0, the quiz is over. Click begin quiz to begin quiz.</h4>
         <section class = "text-center">
             <button class="btn btn-dark btn-lg" id = "begin-button">
                 Begin Quiz</button>
@@ -45,6 +46,9 @@
 
     <script>
         $(document).ready(function() {
+            var timerEl = $("#timer");
+            var timeLeft;
+            var timeInterval;
             var quizPrompt = $("#context");
             var beginButton = $("#begin-button");
             var button1 = $("#button1");
@@ -64,6 +68,21 @@
             var falseOption = [["Hamburgers Tamales Milk Lactose", "Hot Turtle Merry Leash", "Hubert's Tropical Monday Lemonade"],["Cat Super Stand", "Cow Sugar Scam", "Clam Spicy Stew"],["Blue","Black","Green"],["No","NO","no"]]
             var correctOption = ["Hypertext Markup Language","Cascading Style Sheet","Red","Yes"]
             var arrIndex = 0;
+
+            function startTimer() {
+            timeLeft = 60;
+
+            timeInterval = setInterval(function() {
+            timerEl.html(timeLeft);
+            timeLeft--;
+            if (timeLeft === 0) {
+            timerEl.textContent = "0";
+            clearInterval(timeInterval);
+            alert("YOU RAN OUT OF TIME");
+            promptUser();
+            }
+            }, 1000);
+            }
             // remove elements from page to begin quiz
             beginButton.on("click", function (){
                 beginButton.hide();
@@ -71,6 +90,7 @@
                 button2.show();
                 button3.show();
                 button4.show();
+                startTimer();
                 promptQuestion();
             });
 
@@ -83,13 +103,13 @@
             }
 
             function addAnswers(){
-                alert("adding answers");
+                // alert("adding answers");
                 var addedWrong = 0;
                 var randomIndex = Math.floor(Math.random()*4);
                 
                 for (var i = 0; i<4 ; i++){
                     if (i==randomIndex){
-                        alert("added right");
+                        // alert("added right");
                         if (i==0){
                         button1.html(correctOption[arrIndex]);
                         }
@@ -105,7 +125,7 @@
                         rightIndex = i;
                     }
                     else{
-                        alert("added wrong");
+                        // alert("added wrong");
                         if (i==0){
                         button1.html(falseOption[arrIndex][addedWrong]);
                         }
@@ -129,12 +149,14 @@
                 }
                 else{
                     alert("Incorrect!");
+                    timeLeft = timeLeft-5;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
+                    clearInterval(timeInterval);
                     promptUser();
                 }
             });
@@ -145,12 +167,14 @@
                 }
                 else{
                     alert("Incorrect!");
+                    timeLeft = timeLeft-5;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
+                    clearInterval(timeInterval);
                     promptUser();
                     }
             });
@@ -161,12 +185,14 @@
                 }
                 else{
                     alert("Incorrect!");
+                    timeLeft = timeLeft-5;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
+                    clearInterval(timeInterval);
                     promptUser();
                     }
             });
@@ -177,19 +203,24 @@
                 }
                 else{
                     alert("Incorrect!");
-                    points = points+100;
+                    timeLeft = timeLeft-5;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
                     promptQuestion();
                 }
                 else{
+                    clearInterval(timeInterval);
                     promptUser();
                     }
             });
 
             function promptUser(){
                 userName.push(prompt("Enter Your Name"));
+                if (timeLeft > 0){
+                var timePoints = timeLeft * 10;
+                points = points + timePoints;
+                } 
                 userScore.push(points);
                 button1.hide();
                 button2.hide();
