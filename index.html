@@ -18,7 +18,7 @@
             <strong>Coding Quiz</strong>
         </h1>
         <br>
-        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 5 seconds. Every second left over is worth 10 points. When the timer hits 0, the quiz is over. Click begin quiz to begin quiz.</h4>
+        <h4 class="text-center" id = "context">Click on the correct answer to each question. You will have 1 minutes to complete the quiz. Any incorrect answer will reduce your time by 10 seconds. Every second left over is worth 10 points. When the timer hits 0, the quiz is over. Click begin quiz to begin quiz.</h4>
         <section class = "text-center">
             <button class="btn btn-dark btn-lg" id = "begin-button">
                 Begin Quiz</button>
@@ -75,7 +75,7 @@
             timeInterval = setInterval(function() {
             timerEl.html(timeLeft);
             timeLeft--;
-            if (timeLeft === 0) {
+            if (timeLeft < 0) {
             timerEl.textContent = "0";
             clearInterval(timeInterval);
             alert("YOU RAN OUT OF TIME");
@@ -149,7 +149,7 @@
                 }
                 else{
                     alert("Incorrect!");
-                    timeLeft = timeLeft-5;
+                    timeLeft = timeLeft-10;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
@@ -167,7 +167,7 @@
                 }
                 else{
                     alert("Incorrect!");
-                    timeLeft = timeLeft-5;
+                    timeLeft = timeLeft-10;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
@@ -185,7 +185,7 @@
                 }
                 else{
                     alert("Incorrect!");
-                    timeLeft = timeLeft-5;
+                    timeLeft = timeLeft-10;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
@@ -203,7 +203,7 @@
                 }
                 else{
                     alert("Incorrect!");
-                    timeLeft = timeLeft-5;
+                    timeLeft = timeLeft-10;
                 }
                 arrIndex++;
                 if (arrIndex<questionArr.length){
@@ -217,10 +217,10 @@
 
             function promptUser(){
                 userName.push(prompt("Enter Your Name"));
-                if (timeLeft > 0){
                 var timePoints = timeLeft * 10;
+                if (timePoints>0)
                 points = points + timePoints;
-                } 
+                }
                 userScore.push(points);
                 button1.hide();
                 button2.hide();
